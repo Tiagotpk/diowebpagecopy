@@ -18,7 +18,7 @@
 
 ## Funcionalidades
 
-<p>O programa consiste em exibir um clone das páginas da DIO(Digital Innovation One), Home, Login e Feed, no feed será necessário que seja feito o login com usuário e senha disponíveis no arquivo <i>db.json</i>.</p>
+<p>O programa consiste em exibir um clone das páginas da DIO(Digital Innovation One), Home, Login e Feed, no feed será necessário que seja feito o login com usuário e senha disponíveis no arquivo <i>db.json</i> ou então você mesmo pode se cadastrar na página de <b>Cadastro</b>.</p>
 <br>
 
 
