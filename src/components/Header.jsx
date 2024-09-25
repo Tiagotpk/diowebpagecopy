@@ -12,13 +12,22 @@ import {
 } from "./styles";
 import { Button } from "./Button";
 import logo from "../assets/logo-full.svg";
+import { useNavigate } from "react-router-dom";
 const Header = ({auth}) => {
+  const navigate = useNavigate();
+  const handleClickSignIn = () => {
+    navigate('/login')
+  }
+
+  const handleClickHome = () => {
+    navigate('/')
+  }
   return (
     <>
       <Wrapper>
         <Container>
           <Row>
-            <img src={logo} alt="Logo da DIO" />
+            <img src={logo} alt="Logo da DIO" onClick={handleClickHome} />
             { auth ? (
               <>
                 <BuscarInputContainer>
@@ -35,7 +44,7 @@ const Header = ({auth}) => {
             ) : (
               <>
                 <MenuRight href="a">Home</MenuRight>
-                <Button title="Entrar" />
+                <Button title="Entrar" onClick={handleClickSignIn} />
                 <Button title="Cadastrar" />
               </>
             )}
