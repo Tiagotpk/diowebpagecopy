@@ -1,7 +1,6 @@
 import React from "react";
 import {
   BuscarInputContainer,
-  Column,
   Container,
   Input,
   Menu,
