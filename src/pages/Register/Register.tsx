@@ -1,5 +1,6 @@
 import React from "react";
 import { MdEmail, MdLock } from "react-icons/md";
+import { IoIosPerson } from "react-icons/io";
 import { Button } from "../../components/Button";
 import { Header } from "../../components/Header";
 import { Input } from "../../components/Input";
@@ -7,11 +8,12 @@ import {
   Column,
   Container,
   CriarText,
-  EsqueciText,
+  GreenText,
   Row,
   SubTitleLogin,
   Title,
   TitleLogin,
+  WhiteText,
   Wrapper,
 } from "./styles";
 import { useNavigate } from "react-router-dom";
@@ -19,42 +21,52 @@ import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 import { api } from "../../services/api";
+import { IFormData } from "./types";
+
 
 const schema = yup
   .object({
-    email: yup.string().email('Email inválido').required('Campo obrigatório'),
-    password: yup.string().min(3, "No mínimo 3 caracteres.").required('Campo obrigatório'),
+    name: yup.string().required("Nome é obrigatório"),
+    email: yup.string().email("Email inválido").required("Campo obrigatório"),
+    password: yup
+      .string()
+      .min(3, "No mínimo 3 caracteres.")
+      .required("Campo obrigatório"),
   })
   .required();
 
-const Login = () => {
+const Register = () => {
   const navigate = useNavigate();
 
   const {
     control,
     handleSubmit,
     formState: { errors },
-  } = useForm({
+  } = useForm<IFormData>({
     resolver: yupResolver(schema),
     mode: "onChange",
   });
 
-  const onSubmit = async formData =>{ 
-    try {
-      const {data} = await api.get(`users?email=${formData.email}&senha=${formData.password}`)
-      if(data.length === 1){
-        navigate("/feed");
-      }else{
-        alert("Email ou senha inválidos")
-      }
-    } catch (error) {
-      alert('Houve um erro, tente novamente mais tarde . . .')
-    }
-  }
-
-  const handleCreateAccount = () => {
-    navigate("/register");
+  const handleLogin = () => {
+    navigate("/login");
   };
+
+  const onSubmit = async (formData: IFormData) => {
+    try {
+      await api.post("/users", {
+        name: formData.name,
+        email: formData.email,
+        password: formData.password,
+      });
+      
+      alert("Conta criada com sucesso!");
+      navigate("/login");
+    } catch (error) {
+      alert("Erro ao criar a conta, tente novamente.");
+      console.error("Erro:", error);
+    }
+  };
+
 
   return (
     <>
@@ -68,9 +80,16 @@ const Login = () => {
         </Column>
         <Column>
           <Wrapper>
-            <TitleLogin>Faça seu cadastro</TitleLogin>
-            <SubTitleLogin>Faça seu login e make the change...</SubTitleLogin>
+            <TitleLogin>Comece agora grátis</TitleLogin>
+            <SubTitleLogin>Crie sua conta e make the change...</SubTitleLogin>
             <form onSubmit={handleSubmit(onSubmit)}>
+              <Input
+                name="Nome Completo"
+                errorMessage={errors.name?.message}
+                control={control}
+                placeholder="E-mail"
+                leftIcon={<IoIosPerson />}
+              />
               <Input
                 name="email"
                 errorMessage={errors.email?.message}
@@ -87,14 +106,20 @@ const Login = () => {
                 leftIcon={<MdLock />}
               />
               <Button
-                title="Entrar"
+                title="Criar minha conta"
                 variant="secondary"
                 type="submit"
               />
             </form>
             <Row>
-              <EsqueciText>Esqueci minha senha</EsqueciText>
-              <CriarText onClick={handleCreateAccount}>Criar conta</CriarText>
+              <CriarText>
+                Ao clicar em <i>"Criar uma conta grátis"</i>, declaro que li e
+                aceito as Políticas de Privacidade e os termos de uso da DIO.{" "}
+              </CriarText>
+            </Row>
+            <Row>
+              <WhiteText>Já possuí uma conta?</WhiteText>
+              <GreenText onClick={handleLogin}>Clique aqui</GreenText>
             </Row>
           </Wrapper>
         </Column>
@@ -103,4 +128,4 @@ const Login = () => {
   );
 };
 
-export { Login };
+export { Register };

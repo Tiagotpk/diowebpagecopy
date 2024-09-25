@@ -1,7 +1,8 @@
 import React from 'react'
 import { ContainerCard, NameText, Progress, UserPicture} from './styles'
+import { IUserInfo } from './types'
 
-const  UserInfo = ({name, image, percentual}) => {
+const  UserInfo = ({name, image, percentual}: IUserInfo) => {
   return (
     <ContainerCard>
       <UserPicture src={image}/>

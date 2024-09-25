@@ -1,6 +1,7 @@
 import styled, { css } from "styled-components";
+import { IButtonStyled, IUserInfoStyle } from "./types";
 
-export const ButtonContainer = styled.button`
+export const ButtonContainer = styled.button<IButtonStyled>`
   background: #565656;
   border-radius: 22px;
   position: relative;
@@ -219,7 +220,7 @@ export const NameText = styled.div`
 
 `
 
-export const Progress = styled.div`
+export const Progress = styled.div<IUserInfoStyle>`
   width: 180px;
   height: 6px;
   background-color: #fff;

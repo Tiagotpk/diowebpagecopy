@@ -12,7 +12,10 @@ import {
 import { Button } from "./Button";
 import logo from "../assets/logo-full.svg";
 import { useNavigate } from "react-router-dom";
-const Header = ({auth}) => {
+import { IHeader } from "./types";
+
+
+const Header = ({auth}:IHeader) => {
   const navigate = useNavigate();
   const handleClickSignIn = () => {
     navigate('/login')
