@@ -1,7 +1,27 @@
 {
   "users": [
-    {"id":1, "name": "Tiago", "email": "teste@email.com", "password": 123456},
-    {"id":2, "name": "Ciclano", "email": "ciclano@email.com", "password": 123456},
-    {"id":3, "name": "Fulano", "email": "fulano@email.com", "password": 123456}
+    {
+      "id": "1",
+      "name": "Tiago",
+      "email": "teste@email.com",
+      "password": 123456
+    },
+    {
+      "id": "2",
+      "name": "Ciclano",
+      "email": "ciclano@email.com",
+      "password": 123456
+    },
+    {
+      "id": "3",
+      "name": "Fulano",
+      "email": "fulano@email.com",
+      "password": 123456
+    },
+    {
+      "id": "503e",
+      "email": "teste@teste.com",
+      "password": "123456"
+    }
   ]
 }

@@ -21,6 +21,10 @@ const Header = ({auth}) => {
   const handleClickHome = () => {
     navigate('/')
   }
+
+  const handleClickRegister = () => {
+    navigate('/register')
+  }
   return (
     <>
       <Wrapper>
@@ -42,9 +46,9 @@ const Header = ({auth}) => {
               <UserPicture src="https://avatars.githubusercontent.com/u/127142261?v=4" />
             ) : (
               <>
-                <MenuRight href="a">Home</MenuRight>
+                <MenuRight href="/">Home</MenuRight>
                 <Button title="Entrar" onClick={handleClickSignIn} />
-                <Button title="Cadastrar" />
+                <Button title="Cadastrar" onClick={handleClickRegister} />
               </>
             )}
           </Row>
